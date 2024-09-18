@@ -2,7 +2,7 @@
 FROM ubuntu:20.04
 
 # Set environment variable for the desired timezone
-ENV TZ=America/New_York  # Replace with the desired timezone
+ENV TZ=America/New_York
 
 # Install necessary dependencies (Node.js, PostgreSQL, Redis, etc.)
 RUN apt-get update && \
