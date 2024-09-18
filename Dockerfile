@@ -9,8 +9,8 @@ RUN apt-get update && \
     postgresql redis-server curl gnupg && \
     curl -fsSL https://deb.nodesource.com/setup_16.x | bash - && \
     apt-get install -y nodejs
-    ln -fs /usr/share/zoneinfo/$TZ /etc/localtime && \ 
-    dpkg-reconfigure -f noninteractive tzdata
+      ln -fs /usr/share/zoneinfo/$TZ /etc/localtime && \ 
+    dpkg-reconfigure -f noninteractive tzdata 
 
 # Install docmost (assuming it's a Node.js application)
 RUN npm install -g docmost
