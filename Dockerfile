@@ -1,12 +1,17 @@
 # Base image: use an appropriate base (e.g., Debian/Ubuntu)
 FROM ubuntu:20.04
 
+# Set environment variable for the desired timezone
+ENV TZ=America/New_York  # Replace with the desired timezone
+
 # Install necessary dependencies (Node.js, PostgreSQL, Redis, etc.)
 RUN apt-get update && \
     apt-get install -y \
-    postgresql redis-server curl gnupg && \
+    postgresql redis-server curl gnupg tzdata && \   # Add tzdata for timezone configuration
     curl -fsSL https://deb.nodesource.com/setup_16.x | bash - && \
-    apt-get install -y nodejs
+    apt-get install -y nodejs && \
+    ln -fs /usr/share/zoneinfo/$TZ /etc/localtime && \  # Link the timezone file
+    dpkg-reconfigure -f noninteractive tzdata  # Reconfigure tzdata non-interactively
 
 # Install docmost (assuming it's a Node.js application)
 RUN npm install -g docmost
